@@ -2,10 +2,8 @@
 ## IMPORTS
 ######################################################################
 
-from socket import MSG_ERRQUEUE
 import paho.mqtt.client as paho
 import json
-import threading
 
 ######################################################################
 ## CLASSES

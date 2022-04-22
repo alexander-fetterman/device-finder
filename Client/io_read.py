@@ -26,6 +26,10 @@ class GPIO_Reader():
         # Set designated pin as an input
         GPIO.setup( GPIO_Reader.PIN, GPIO.IN )
 
+    
+    def device_found(  ):
+        pass
+
     ##################################################
     ## PUBLIC STATIC METHODS
     ##################################################
