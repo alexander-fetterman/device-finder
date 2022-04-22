@@ -56,7 +56,7 @@ class GPIO_Reader():
             if( pin_level == GPIO_Reader.DETECTED ):
                 print( "\n***** DEVICE DETECTED! *****\n" )
                 try:
-                    MqttClient.send_message()
+                    MqttClient.MqttClient.send_message()
                 except Exception as e:
                     print( "...SEND FAILED...\n", e )
                 time.sleep( GPIO_Reader.SLEEP_DETECTED )
