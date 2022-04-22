@@ -8,6 +8,12 @@ class GPIO_Reader():
     ## CONSTANTS
     ##################################################
 
+    PIN = 24
+    DETECTED = 1
+
+    SLEEP_DETECTED = 10
+    SLEEP_UNDETECTED = 1
+
     ##################################################
     ## PRIVATE STATIC METHODS
     ##################################################
@@ -16,6 +22,9 @@ class GPIO_Reader():
         # Initialize GPIO
         GPIO.setwarnings( True )
         GPIO.setmode( GPIO.BCM )
+
+        # Set designated pin as an input
+        GPIO.setup( GPIO_Reader.PIN, GPIO.IN )
 
     ##################################################
     ## PUBLIC STATIC METHODS
@@ -27,24 +36,16 @@ class GPIO_Reader():
 
         # Loop forever
         while( True ):
+            # Check the pin
+            pin_level = GPIO.input( GPIO_Reader.PIN )
+
+            if( pin_level == GPIO_Reader.DETECTED ):
+                print( "\n***** DEVICE DETECTED! *****\n" )
+                time.sleep( GPIO_Reader.SLEEP_DETECTED )
+            else:
+                print( "NO DEVICE FOUND..." )
+                time.sleep( GPIO_Reader.SLEEP_UNDETECTED )
+                
 
 
-# GPIO.cleanup()
-
-# read data using pin 14
-instance = dht11.DHT11(pin=18)
-
-try:
-	while True:
-	    result = instance.read()
-	    if result.is_valid():
-	        print("Last valid input: " + str(datetime.datetime.now()))
-
-	        print("Temperature: %-3.1f C" % result.temperature)
-	        print("Humidity: %-3.1f %%" % result.humidity)
-
-	    #time.sleep(0)
-
-except KeyboardInterrupt:
-    print("Cleanup")
-    GPIO.cleanup()
+GPIO_Reader.run()
