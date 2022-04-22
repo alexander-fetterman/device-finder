@@ -81,4 +81,8 @@ class MqttClient():
         if MqttClient.CLIENT is None:
             MqttClient.initialize()
 
-        MqttClient.CLIENT.publish( MqttClient.TOPIC, MqttClient.__generate_message() )
+        print( "send_message : ", "PUBLISHING..." )
+        try:
+            MqttClient.CLIENT.publish( MqttClient.TOPIC, MqttClient.__generate_message() )
+        except:
+            print( "send_mesage : ", "PUBLISH FAILED" )
