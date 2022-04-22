@@ -1,6 +1,16 @@
+######################################################################
+## IMPORTS
+######################################################################
+
 import RPi.GPIO as GPIO
 import time
 import datetime
+import MqttClient
+
+######################################################################
+## CLASSES
+######################################################################
+
 
 class GPIO_Reader():
     
@@ -45,6 +55,10 @@ class GPIO_Reader():
 
             if( pin_level == GPIO_Reader.DETECTED ):
                 print( "\n***** DEVICE DETECTED! *****\n" )
+                try:
+                    MqttClient.send_message()
+                except:
+                    print( "...SEND FAILED..." )
                 time.sleep( GPIO_Reader.SLEEP_DETECTED )
             else:
                 print( "NO DEVICE FOUND..." )

@@ -2,7 +2,6 @@
 ## IMPORTS
 ######################################################################
 
-from re import M
 import paho.mqtt.client as paho
 import json
 import uuid
@@ -57,7 +56,7 @@ class MqttClient():
     ## PRIVATE HELPER FUNCTIONS
     ######################################################################    
 
-    def generate_message(  ):
+    def __generate_message(  ):
         # Create a new dictionary to create the message in
         msg_dict = dict()
 
@@ -82,4 +81,4 @@ class MqttClient():
         if MqttClient.CLIENT is None:
             MqttClient.initialize()
 
-        MqttClient.CLIENT.publish( MqttClient.TOPIC, MqttClient.generate_message() )
+        MqttClient.CLIENT.publish( MqttClient.TOPIC, MqttClient.__generate_message() )
