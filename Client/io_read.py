@@ -11,7 +11,7 @@ class GPIO_Reader():
     PIN = 5
     DETECTED = 1
 
-    SLEEP_DETECTED = 10
+    SLEEP_DETECTED = 1
     SLEEP_UNDETECTED = 1
 
     ##################################################
