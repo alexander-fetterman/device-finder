@@ -8,7 +8,7 @@ class GPIO_Reader():
     ## CONSTANTS
     ##################################################
 
-    PIN = 5
+    PIN = 24
     DETECTED = 1
 
     SLEEP_DETECTED = 1
