@@ -16,7 +16,7 @@ class MqttClient():
     ## CONSTANTS
     ######################################################################
 
-    BROKER_URI = "127.0.0.1"
+    BROKER_URI = "192.168.1.207"
     CLIENT_NAME = "DemoClient"
     TOPIC = "/Demo"
 
