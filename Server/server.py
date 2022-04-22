@@ -62,12 +62,13 @@ class MqttDriver:
         print( "Message received: ", str( message.payload.decode("utf-8") ) )
         
         # Parse the message into a dictionary
-        msg_values = json.loads( str( message.payload.decode("utf-8") ) )
-        # print( "Timestamp: {ts}".format( ts = msg_values[ 'ts' ] ) )
-        # print( "Moisture Level: {ms}".format( ms = msg_values[ 'ms' ] ) )
+        try:
+            msg_values = json.loads( str( message.payload.decode("utf-8") ) )
 
-        #print( msg_values )
-        print( "Device detected in room %d at time %d" % ( msg_values[ 'dev' ], msg_values[ 'ts' ] ) )
+            #print( msg_values )
+            print( "Device detected in room %d at time %d" % ( msg_values[ 'dev' ], msg_values[ 'ts' ] ) )
+        except:
+            print( "*****MESSAGE RECEIVE FAILED*****" )
 
         # Insert the tuple into the database
         # print( 'Inserting tuple...' )
