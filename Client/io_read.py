@@ -57,8 +57,8 @@ class GPIO_Reader():
                 print( "\n***** DEVICE DETECTED! *****\n" )
                 try:
                     MqttClient.send_message()
-                except:
-                    print( "...SEND FAILED..." )
+                except Exception as e:
+                    print( "...SEND FAILED...\n", e )
                 time.sleep( GPIO_Reader.SLEEP_DETECTED )
             else:
                 print( "NO DEVICE FOUND..." )
