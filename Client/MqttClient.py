@@ -21,6 +21,7 @@ class MqttClient():
     TOPIC = "/Demo"
 
     TLS_CRT = "~/Documents/ca.crt"
+    PORT = 8883
 
     ######################################################################
     ## CLASS VARIABLES
@@ -46,10 +47,10 @@ class MqttClient():
         MqttClient.CLIENT = paho.Client( MqttClient.CLIENT_NAME )
 
         # Set it to use TLS
-        MqttClient.CLIENT.tls_set(  )
+        MqttClient.CLIENT.tls_set( MqttClient.TLS_CRT )
 
         # Connect the client to the broker
-        MqttClient.CLIENT.connect( MqttClient.BROKER_URI )
+        MqttClient.CLIENT.connect( MqttClient.BROKER_URI, MqttClient.PORT )
 
         # Store the MAC address statically
         MqttClient.MAC = int( uuid.getnode() )
