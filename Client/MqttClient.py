@@ -20,6 +20,8 @@ class MqttClient():
     CLIENT_NAME = "DemoClient"
     TOPIC = "/Demo"
 
+    TLS_CRT = "~/Documents/ca.crt"
+
     ######################################################################
     ## CLASS VARIABLES
     ######################################################################
@@ -42,6 +44,9 @@ class MqttClient():
     def initialize( ):
         # Create a static MQTT client
         MqttClient.CLIENT = paho.Client( MqttClient.CLIENT_NAME )
+
+        # Set it to use TLS
+        MqttClient.CLIENT.tls_set(  )
 
         # Connect the client to the broker
         MqttClient.CLIENT.connect( MqttClient.BROKER_URI )
