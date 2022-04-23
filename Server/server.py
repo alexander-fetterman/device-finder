@@ -19,6 +19,9 @@ class MqttDriver:
     CLIENT_NAME = "DemoClient"
     TOPIC = "/Demo"
 
+    DEVICE_ID = "devID"
+    TIMESTAMP = "ts"
+
     ######################################################################
     ## CLASS VARIABLES
     ######################################################################
@@ -70,9 +73,9 @@ class MqttDriver:
             msg_values = json.loads( str( message.payload.decode("utf-8") ) )
 
             #print( msg_values )
-            print( "Device detected in room %d at time %d" % ( msg_values[ 'dev' ], msg_values[ 'ts' ] ) )
-        except:
-            print( "*****MESSAGE RECEIVE FAILED*****" )
+            print( "Device detected in room %d at time %d" % ( msg_values[ MqttDriver.DEVICE_ID ], msg_values[ MqttDriver.TIMESTAMP ] ) )
+        except Exception as e:
+            print( "*****MESSAGE RECEIVE FAILED*****\n", e )
 
         # Insert the tuple into the database
         # print( 'Inserting tuple...' )
