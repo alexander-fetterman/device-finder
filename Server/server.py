@@ -4,6 +4,7 @@
 
 import paho.mqtt.client as paho
 import json
+import uuid
 
 ######################################################################
 ## CLASSES
@@ -42,10 +43,13 @@ class MqttDriver:
     '''
     def initialize( ): #database ):
         # Create a static MQTT client
+        MqttDriver.CLIENT_NAME = str( uuid.getnode() )
         MqttDriver.CLIENT = paho.Client( MqttDriver.CLIENT_NAME )
 
         # Set the callback method for message received
         MqttDriver.CLIENT.on_message = MqttDriver.__message_received
+
+        
 
         # Use the argument database as the member database
         # self.database = database
