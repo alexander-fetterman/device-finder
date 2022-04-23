@@ -6,6 +6,8 @@ import paho.mqtt.client as paho
 import json
 import uuid
 
+import sys
+sys.path.insert( 1, "../Database" )
 import database as Database
 
 ######################################################################

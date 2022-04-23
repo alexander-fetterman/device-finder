@@ -15,6 +15,7 @@ class Database:
     
     DATABASE_TYPE = 'postgresql'
     TABLE_NAME = 'devices'
+    DB_INI = "database.ini"#""~/Documents/IoT/device-finder/Database/database.ini"#"/home/alexander/IoT/device-finder/Database/database.ini"
 
     ######################################################################
     ## MEMBER VARIABLES
@@ -31,7 +32,7 @@ class Database:
     @param filename --- The initialization filename which will be used for connection
     '''
     def __init__( self, filename ):
-        self.FILENAME = filename
+        self.FILENAME = Database.DB_INI
         self.db_connect()
 
     ######################################################################
@@ -47,7 +48,7 @@ class Database:
         parser = ConfigParser()
         
         # read config file
-        parser.read( self.FILENAME )
+        parser.read( Database.DB_INI )
 
         # get section, default to postgresql
         db = {}
@@ -91,6 +92,11 @@ class Database:
         
         # Commit the insert operation
         self.connection.commit()
+
+    def last_occupied( self, room_number ):
+        self.cursor.execute( "SELECT max( ts ) as last_occupied FROM devices WHERE mac = {rn};".format( rn=room_number ) )
+        return self.cursor.fetchone()[0]
+
 
     '''
     Get the most recent tuples from the database.
