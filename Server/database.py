@@ -14,7 +14,7 @@ class Database:
     ######################################################################
     
     DATABASE_TYPE = 'postgresql'
-    TABLE_NAME = 'sensordata'
+    TABLE_NAME = 'devices'
 
     ######################################################################
     ## MEMBER VARIABLES
@@ -32,6 +32,7 @@ class Database:
     '''
     def __init__( self, filename ):
         self.FILENAME = filename
+        self.db_connect()
 
     ######################################################################
     ## PRIVATE METHODS
@@ -103,3 +104,7 @@ class Database:
         #  operation over external network.
         tuples = self.cursor.fetchall()
         return tuples
+
+db = Database( "database.ini" )
+db.db_connect()
+db.insert_values( 2, 5 )

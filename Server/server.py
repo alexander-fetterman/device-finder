@@ -6,6 +6,8 @@ import paho.mqtt.client as paho
 import json
 import uuid
 
+import database as Database
+
 ######################################################################
 ## CLASSES
 ######################################################################
@@ -27,6 +29,7 @@ class MqttDriver:
     ######################################################################
 
     CLIENT = None
+    DATABASE = None
 
     ######################################################################
     ## MEMBER VARIABLES
@@ -55,7 +58,7 @@ class MqttDriver:
         
 
         # Use the argument database as the member database
-        # self.database = database
+        MqttDriver.DATABASE = Database.Database( "database.ini" )
 
 
     ######################################################################
@@ -74,6 +77,7 @@ class MqttDriver:
 
             #print( msg_values )
             print( "Device detected in room %d at time %d" % ( msg_values[ MqttDriver.DEVICE_ID ], msg_values[ MqttDriver.TIMESTAMP ] ) )
+            MqttDriver.DATABASE.insert_values( msg_values[ MqttDriver.DEVICE_ID ], msg_values[ MqttDriver.TIMESTAMP ] )
         except Exception as e:
             print( "*****MESSAGE RECEIVE FAILED*****\n", e )
 
