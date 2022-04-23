@@ -47,7 +47,7 @@ class MqttClient():
         MqttClient.CLIENT.connect( MqttClient.BROKER_URI )
 
         # Store the MAC address statically
-        MqttClient.MAC = str( uuid.getnode() )
+        MqttClient.MAC = int( uuid.getnode() )
 
         # Use the argument database as the member database
         # self.database = database    
